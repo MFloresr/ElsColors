@@ -25,24 +25,45 @@ public class Controller {
     private TextField textBuscar;
     @FXML
     private Button btnBuscar;
+    //falta labels
     @FXML
     private ChoiceBox choisebox;
     private Connection con = null;
-    private ObservableList<String> idiomas=FXCollections.observableArrayList();
+    String idioma;
 
+    @FXML
+    public void initialize(){
+        cargarChoise();
+    }
 
     public void cargarChoise(){
         choisebox.getItems().addAll("Anglès","Castellà","Català","Francés");
+        choisebox.getSelectionModel().select(2);
+        System.out.print(choisebox.getSelectionModel().getSelectedIndex());
+    }
+
+    public void detectarIdioma(){
+        if(choisebox.getSelectionModel().getSelectedIndex()==0){
+            idioma = "angles";
+        }if(choisebox.getSelectionModel().getSelectedIndex()==1){
+            idioma = "castella";
+        }if(choisebox.getSelectionModel().getSelectedIndex()==2){
+            idioma = "nom";
+        }if(choisebox.getSelectionModel().getSelectedIndex()==3){
+            idioma = "frances";
+        }
     }
 
     @FXML
     public void buscarColores(Event event){
+        //choisebox.getSelectionModel().getSelectedIndex();
         try {
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://192.168.4.1/traductor","foot","ball");
-
-            PreparedStatement peticion  =con.prepareStatement("SELECT DISTINCT nom, angles,castella,frances  FROM colors WHERE nom=? ");
-            peticion.setString(1, textBuscar.getText());
+            detectarIdioma();
+            PreparedStatement peticion  =con.prepareStatement("SELECT DISTINCT nom, angles,castella,frances  FROM colors WHERE ?=? ");
+            peticion.setString(1,idioma);
+            peticion.setString(2, textBuscar.getText());
 
             //PreparedStatement peticion  =con.prepareStatement("SELECT DISTINCT nom, angles,castella,frances  FROM colors ");
             ResultSet resultat = peticion.executeQuery();
