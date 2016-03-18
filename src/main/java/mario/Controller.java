@@ -123,29 +123,26 @@ public class Controller {
     public void buscarColores(Event event){
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            //con = DriverManager.getConnection("jdbc:mysql://192.168.4.1/traductor","foot","ball");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cendrassos","mario","qcmmer2sa!");
-            if(!con.isClosed()){
-                detectarIdioma();
-                PreparedStatement peticion  =con.prepareStatement("SELECT DISTINCT nom, angles, castella, frances  FROM colors WHERE "+idioma+"=? ;");
-                peticion.setString(1, textBuscar.getText());
+            con = DriverManager.getConnection("jdbc:mysql://192.168.4.1/traductor","foot","ball");
+            //con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cendrassos","mario","qcmmer2sa!");
 
-                resultat = peticion.executeQuery();
-                if(resultat.isBeforeFirst()) {
-                    while (resultat.next()) {
-                        pintaridiomas();
-                        rect.setFill(Paint.valueOf(resultat.getString("angles")));
-                    }
-                }else{
-                    errocolornoencontrado();
+            detectarIdioma();
+            PreparedStatement peticion  =con.prepareStatement("SELECT DISTINCT nom, angles, castella, frances  FROM colors WHERE "+idioma+"=? ;");
+            peticion.setString(1, textBuscar.getText());
+
+            resultat = peticion.executeQuery();
+            if(resultat.isBeforeFirst()) {
+                while (resultat.next()) {
+                    pintaridiomas();
+                    rect.setFill(Paint.valueOf(resultat.getString("angles")));
                 }
             }else{
-                errorconnecion();
+                errocolornoencontrado();
             }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
-            e.printStackTrace();
+            errorconnecion();
         }finally {
             try {
                 con.close();
