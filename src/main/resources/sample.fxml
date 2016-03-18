@@ -20,16 +20,16 @@
     <children>
         <Pane prefHeight="378.0" prefWidth="612.0">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff" height="200.0" layoutX="78.0" layoutY="159.0" stroke="BLACK" strokeType="INSIDE" width="501.0" />
-            <Button fx:id="btnBscar" layoutX="429.0" layoutY="95.0" mnemonicParsing="false" onMouseClicked="#buscarColores" prefHeight="25.0" prefWidth="150.0" text="Cercar" />
+            <Rectangle fx:id="rect" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff" height="200.0" layoutX="78.0" layoutY="159.0" stroke="BLACK" strokeType="INSIDE" width="501.0" />
+            <Button fx:id="btnBuscar" layoutX="429.0" layoutY="95.0" mnemonicParsing="false" onMouseClicked="#buscarColores" prefHeight="25.0" prefWidth="150.0" text="Cercar" />
             <ChoiceBox fx:id="choisebox" layoutX="429.0" layoutY="37.0" prefWidth="150.0" />
             <Label fx:id="labcast" layoutX="164.0" layoutY="202.0" text="Castellà" />
             <Label fx:id="labfranc" layoutX="165.0" layoutY="250.0" text="Francés" />
             <Label fx:id="labang" layoutX="167.0" layoutY="299.0" text="Anglès" />
             <TextField fx:id="textBuscar" layoutX="76.0" layoutY="95.0" prefHeight="25.0" prefWidth="345.0" />
-            <TextField fx:id="textCastella" layoutX="248.0" layoutY="198.0" prefHeight="25.0" prefWidth="278.0" />
-            <TextField fx:id="textFrances" layoutX="248.0" layoutY="246.0" prefHeight="25.0" prefWidth="278.0" />
-            <TextField fx:id="textAngles" layoutX="248.0" layoutY="295.0" prefHeight="25.0" prefWidth="278.0" />
+            <TextField fx:id="textCastella" editable="false" layoutX="248.0" layoutY="198.0" prefHeight="25.0" prefWidth="278.0" />
+            <TextField fx:id="textFrances" editable="false" layoutX="248.0" layoutY="246.0" prefHeight="25.0" prefWidth="278.0" />
+            <TextField fx:id="textAngles" editable="false" layoutX="248.0" layoutY="295.0" prefHeight="25.0" prefWidth="278.0" />
             <Label layoutX="88.0" layoutY="142.0" text="Traducció" />
          </children></Pane>
     </children>
